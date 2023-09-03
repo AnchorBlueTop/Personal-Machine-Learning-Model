@@ -28,6 +28,8 @@ Here are the main SAEHD model options/dimensions(dims) for my GPU (RTX 4090):
 | AdaBelief Optimizer   | FALSE  | FALSE  | TRUE | TRUE |
 | Batch Size   | 8  | 14  | 16  | 10 |
 
+## How to make informed decisions during training.
+
 Every model I train can be boiled down to 3 phases:
 Random Warp (RW) - Inital Generalization of the Face
 Refinement with Learning Rate Dropout (LRD) - Learning the finer details of the face, Stabalize Face.
@@ -53,14 +55,15 @@ Similarly, the destination loss measures the quality of the generated destinatio
 Essentially, once loss values no longer improve, and there isn't a notable difference in the previews after a period of time in training, then we can move onto an additional step or stop training. 
 
 It is also important to note that overtraining is also a concern, as training for too long can cause undeseriable effects. 
-Here is an example of 12 Hour vs 72 Hour Training.
+Here is an example:
 
-![Screenshot 2023-09-03 215643](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/804438b9-e17b-4dc2-ae9c-ca1c10a206d2)
+![annotated](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/dc03d95d-f0c4-4454-9118-89dc4b4f8d9b)
+
 
 The overtrained model has eyes that do not look into the camera.
 In order to prevent this, it's important to regularly backup models after each step and every phase. 
 
-Here are some more previews:
+## Here are some more previews:
 
 ![576p](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03)
 ![576p harshil](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37)
