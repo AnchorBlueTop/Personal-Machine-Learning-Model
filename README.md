@@ -14,8 +14,8 @@ What started off as something that I thought would be simple and straight forwar
 * Avoid overtraining.
 * Machine Learning Libraries (TensorFlow, cuDNN) for Linux (Better Performance)
 
-I have pretrained a variety of different models using the inbuilt pretrain data-set of 10000 stock images. 
-Here are the main SAEHD model options/dimensions(dims) for my GPU (RTX 4090):
+I have pretrained a variety of different models using the inbuilt pretrain data-set of 10000 stock images.  
+Here are the SAEHD model options/dimensions(dims) that I have trained using my GPU (RTX 4090):
 
 | Resolution  | 544x544 (Main) | 384x384 | 352x352 | 512x512                                                   
 | ------------- | ------------- | ------------- | ------------- | ------------- |          
@@ -36,7 +36,7 @@ Every model I train can be boiled down to 3 phases:
 3. GAN (General Generative Adversarial Networks - Sharpen the Faces
 
 Keep in mind, each phase also contain additional steps that will further decrease loss values before we move onto another phase.
-However, once we move onto another phase, we cannot go back, or it's much better to use a backup save if the model collapses.
+However, once we move onto another phase, we cannot go back. This is why it is imperative to regurarly create backups after each step. especially if the model collapses.
 
 On average each phase takes about 30 hours to complete. 
 
