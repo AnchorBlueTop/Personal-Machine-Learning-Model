@@ -77,7 +77,8 @@ It is important then to reguarly merge your model during each phase to interpret
 
 ## Conlcusion
 To conclude, as a hobby I make these deepfakes for fun and entertainment purposes. There is a fine line with this sort of technology and I make sure I follow all legal laws and
-my own moral and ethical values. I have heard a few people tell me that they believed the deepfaked video to be the real thing if they hadn't seen the original or knew it was fake. So yeah I guess you know what they say, great power comes with great responsibility 😎
+my own moral and ethical values. I have heard a few people tell me that they believed the deepfaked video to be the real thing if they hadn't seen the original or knew it was fake. So yeah I guess you know what they say,  
+great power comes with great responsibility 😎
 
 
 
