@@ -4,9 +4,9 @@
 ![harshil 1](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/54ba8680-6953-472e-be59-0a373c1eeca9)
 
 Using [DeepFaceLab](https://github.com/iperov/DeepFaceLab) I have developed a RTM (Ready to merge) 3D model reconstruction of my face - a deepfake.
-What started off as something that I thought would be simple and straight forward, turned out to be quite difficult in terms of getting the predicted learned face to look as good as possible in the final video. 
+What started off as something that I thought would be simple and straight forward, turned out to be quite difficult in terms of getting the predicted learned face to look as good as possible in the final video. This is a quick rundown of my many months of experience with deepfaking and what I've learnt from this process.
 
-This is a quick rundown of my many months of experience with deepfaking and what I've learnt from this process.
+## Main Takeaways
 
 * How to interpret loss values.
 * Optimzing my source dataset (5000 imaages of myself)
