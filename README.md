@@ -1,7 +1,7 @@
 # Personal-Machine-Learning-Model
 3D Facial Model Reconstruction of Myself using DFL
 
-![harshil 1](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/54ba8680-6953-472e-be59-0a373c1eeca9)
+![harshil compare](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/36c0568d-a629-4932-8727-dd41c69037c6)
 
 Using [DeepFaceLab](https://github.com/iperov/DeepFaceLab) I have developed a RTM (Ready to merge) 3D model reconstruction of my face - a deepfake.
 What started off as something that I thought would be simple and straight forward, turned out to be quite difficult in terms of getting the predicted learned face to look as good as possible in the final video. This is a quick rundown of my many months of experience with deepfaking and what I've learnt from this process.
@@ -74,7 +74,9 @@ It is important then to reguarly merge your model during each phase to interpret
 
 ![k3g](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/0286e5b3-2d46-42f4-9c6c-e41226fb2890)
 
-
+To conclude, as a hobby I make these deepfakes for fun and entertainment purposes. There is a fine line with this sort of technology and I make sure I follow all legal laws and
+my own moral and ethical values. I have heard a few people tell me that they believed the deepfaked video to be the real thing, if they hadn't seen the original or knew it was fake.  
+So yeah I guess great power comes with great responsibility 😎
 
 
 
