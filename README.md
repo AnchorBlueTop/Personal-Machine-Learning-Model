@@ -28,16 +28,21 @@ Here are the main SAEHD model options/dimensions(dims) for my GPU (RTX 4090):
 | AdaBelief Optimizer   | FALSE  | FALSE  | TRUE | TRUE |
 | Batch Size   | 8  | 14  | 16  | 10 |
 
-## How to make informed decisions during training.
+## Model Phases.
 
 Every model I train can be boiled down to 3 phases:
-Random Warp (RW) - Inital Generalization of the Face
-Refinement with Learning Rate Dropout (LRD) - Learning the finer details of the face, Stabalize Face.
-GAN (General Generative Adversarial Networks - Sharpen the Faces
+1. Random Warp (RW) - Inital Generalization of the Face
+2. Refinement with Learning Rate Dropout (LRD) - Learning the finer details of the face, Stabalize Face.
+3. GAN (General Generative Adversarial Networks - Sharpen the Faces
 
-Keep in mind, each phase also contain additional steps that will further decrease loss values.
+Keep in mind, each phase also contain additional steps that will further decrease loss values before we move onto another phase.
+However, once we move onto another phase, we cannot go back, or it's much better to use a backup save if the model collapses.
 
-On average each phase takes about 30 hours to complete. Knowing when to proceed to the next phase is down by looking at the face previews and by interpreting model loss values.
+On average each phase takes about 30 hours to complete. 
+
+## How to make informed decisions during training.
+
+Knowing when to proceed to the next phase is down by looking at the face previews and by interpreting model loss values.
 Model loss usually follows a logarithmic trend downwards during RW before stagnating during refinement and GAN phases.
 
 ![Untitled-4](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/341e3a21-cd55-4cda-960c-3043a56717f4)
