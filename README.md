@@ -59,16 +59,15 @@ Similarly, the destination loss measures the quality of the generated destinatio
 
 Essentially, once loss values no longer improve, and there isn't a notable difference in the previews after a period of time in training, then we can move onto an additional step or stop training. 
 
-It is also important to note that overtraining is also a concern, as training for too long can cause undeseriable effects. 
+It is also important to note that overtraining is also a concern, as training for too long can cause undeseriable effects.  
 Here is an example:
 
 ![annotated](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/dc03d95d-f0c4-4454-9118-89dc4b4f8d9b)
 
+Certain settings such as Eyes & Mouth Priority (EMP) can have adverse effects on our model despite seemigly reducing DST loss values.  
+It is important then to reguarly merge your model during each phase to interpret how much training your model really needs, otherwise additional training is then redundant. 
 
-The overtrained model has eyes that do not look into the camera.
-In order to prevent this, it's important to regularly backup models after each step and every phase. 
-
-## Here are some more previews:
+## Here are some additional previews:
 
 ![576p](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03)
 ![576p harshil](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37)
