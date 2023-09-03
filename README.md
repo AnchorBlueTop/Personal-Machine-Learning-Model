@@ -66,7 +66,7 @@ Here is an example:
 
 
 Certain settings such as Eyes & Mouth Priority (EMP) can have adverse effects on our model despite seemigly reducing DST loss values.  
-It is important then to reguarly merge your model during each phase to interpret how much training your model really needs, otherwise additional training is then redundant. 
+It is important then to reguarly merge your model during each phase to interpret how much training your model really needs, otherwise additional training is then made redundant. 
 
 ## Here are some additional previews:
 
