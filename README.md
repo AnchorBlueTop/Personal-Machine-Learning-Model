@@ -77,8 +77,10 @@ It is important then to reguarly merge your model during each phase to interpret
 
 ## Conlcusion
 To conclude, as a hobby I make these deepfakes for fun and entertainment purposes. There is a fine line with this sort of technology and I make sure I follow all legal laws and
-my own moral and ethical values. I have heard a few people tell me that they believed the deepfaked video to be the real thing if they hadn't seen the original or knew it was fake. So yeah I guess you know what they say,  
-great power comes with great responsibility 😎
+my own moral and ethical values. I have heard a few people tell me that they believed the deepfaked video to be the real thing if they hadn't seen the original or knew it was fake. So yeah I guess you know what they say;
+
+![spider-man-uncle-ben](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/1e1ebf31-8900-42d7-98f3-2b84844c3e94)
+
 
 
 
