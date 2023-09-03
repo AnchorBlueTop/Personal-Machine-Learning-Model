@@ -1,7 +1,7 @@
 # Personal-Machine-Learning-Model
 3D Facial Model Reconstruction of Myself using DFL
 
-![harshil compare](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/36c0568d-a629-4932-8727-dd41c69037c6)
+![before after](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/da4c0d3a-ec5b-42d1-9350-9bee48c644a4)
 
 Using [DeepFaceLab](https://github.com/iperov/DeepFaceLab) I have developed a RTM (Ready to merge) 3D model reconstruction of my face - a deepfake.
 What started off as something that I thought would be simple and straight forward, turned out to be quite difficult in terms of getting the predicted learned face to look as good as possible in the final video. This is a quick rundown of my many months of experience with deepfaking and what I've learnt from this process.
@@ -62,7 +62,8 @@ Essentially, once loss values no longer improve, and there isn't a notable diffe
 It is also important to note that overtraining is also a concern, as training for too long can cause undeseriable effects.  
 Here is an example:
 
-![annotated](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/dc03d95d-f0c4-4454-9118-89dc4b4f8d9b)
+![camera](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/4576c062-eb12-4e4b-959a-0a286dd1d453)
+
 
 Certain settings such as Eyes & Mouth Priority (EMP) can have adverse effects on our model despite seemigly reducing DST loss values.  
 It is important then to reguarly merge your model during each phase to interpret how much training your model really needs, otherwise additional training is then redundant. 
@@ -72,8 +73,9 @@ It is important then to reguarly merge your model during each phase to interpret
 ![576p](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03)
 ![576p harshil](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37)
 
-![k3g](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/0286e5b3-2d46-42f4-9c6c-e41226fb2890)
+![2 faces](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/6a97dd3d-abf4-4327-9a08-3c6412fedadb)
 
+## Conlcusion
 To conclude, as a hobby I make these deepfakes for fun and entertainment purposes. There is a fine line with this sort of technology and I make sure I follow all legal laws and
 my own moral and ethical values. I have heard a few people tell me that they believed the deepfaked video to be the real thing, if they hadn't seen the original or knew it was fake.  So yeah I guess great power comes with great responsibility 😎
 
