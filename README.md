@@ -1,4 +1,4 @@
-# AI Creative Production: An Engineering Case Study
+<h1 align="center">AI Creative Production: An Engineering Case Study</h1>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2005.05535">
