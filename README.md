@@ -76,28 +76,41 @@ Each video is the result of a painstaking, multi-stage production pipeline that 
 
 Training is not a "fire-and-forget" process. It is an iterative cycle of analysis and intervention, where I make informed, data-driven decisions based on performance metrics to guide the model toward an optimal result.
 
-#### Interpreting the Data: SRC vs. DST Loss
-The entire training process is a balancing act between two key metrics: **SRC Loss** (how well the model reconstructs my face) and **DST Loss** (how well it reconstructs the target's face). Progression between phases typically occurs when the rate of loss improvement stagnates to less than **0.010 over a 25-minute interval**.
+#### How to Make Informed Decisions During Training
+
+Knowing when to proceed to the next phase comes down to looking at the face previews and interpreting model loss values. The model loss usually follows a logarithmic trend downwards during the initial generalization phase before stagnating during the refinement and final sharpening phases.
+
+![Loss Curve Graph](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/341e3a21-cd55-4cda-960c-3043a56717f4)
+
+The entire training process is a balancing act between two key metrics, which are logged continuously:
 
 ![Loss Value Log](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/5899a485-cdb6-47b1-bed6-be0a89458dfb)
 
-#### Phase 1: Generalization (Random Warp Enabled)
-*   **Objective:** To teach the model the general structure, expressions, and angles of the faces.
+*   **SRC (Source) Loss:** This measures how accurately the model can reconstruct my own face. A lower value means the model is getting better at reproducing my specific facial features.
+*   **DST (Destination) Loss:** This measures how accurately the model can reconstruct the face of the actor in the target video. A lower value indicates better performance in capturing the target's expressions and head movements.
+
+Essentially, once the loss values no longer improve at a significant rate (I typically use a threshold of less than **0.010 improvement over a 25-minute interval**), and there isn't a notable difference in the visual previews, it's time to move to the next step or phase. This data-driven approach is critical to avoid overfitting and achieve a high-quality result.
+
+#### My Three-Phase Training Process
+
+My methodology is broken down into three distinct phases, with progression between them governed by the data described above.
+
+##### Phase 1: Generalization (Random Warp Enabled)
+*   **Objective:** To teach the model the general structure, expressions, and angles of the faces. Fine detail is not the priority.
 *   **Key Settings:** `Random Warp (RW)`: **Enabled**, `Flip DST faces randomly`: **Enabled**.
 
-#### Phase 2: Refinement & Detail Acquisition (Random Warp Disabled)
+##### Phase 2: Refinement & Detail Acquisition (Random Warp Disabled)
 *   **Objective:** To learn the fine details, textures, and subtle nuances of the face.
 *   **Key Settings & Sub-stages:**
     1.  **Initial Refinement:** `RW` is **disabled**, `LRD` is **enabled**, and `MS-SSIM` loss function is introduced.
     2.  **Pose Refinement:** `Uniform Yaw (UY)` is enabled for several hours to improve side profiles.
-    3.  **Feature Priority:** `Eyes and Mouth Priority (EMP)` is selectively enabled to fix specific blurriness.
+    3.  **Feature Priority:** `Eyes and Mouth Priority (EMP)` is selectively enabled to fix specific blurriness, used with caution to avoid artifacts.
 
-#### Phase 3: Final Sharpening (GAN)
+##### Phase 3: Final Sharpening (GAN)
 *   **Objective:** To apply a final layer of sharpness and realism.
 *   **Execution:** `GAN` is enabled at a low power setting (`0.1`) for a very short duration (**10-15 minutes**) to avoid over-sharpening artifacts.
 
-    
----
+--- 
 
 ### 6. Model Architectures & Parameters: An Empirical Analysis
 
