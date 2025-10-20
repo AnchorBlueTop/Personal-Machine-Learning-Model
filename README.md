@@ -155,6 +155,7 @@ Below are my most frequently used and tested model configurations, representing 
 | **Decoder Dims** | 80 | 98 |
 | **Mask Dims**| 32 | 32 |
 | **Batch Size** | 10 | 10 |
+| **AdaBelief** | TRUE | FALSE |
 
 ##### A Note on the AdaBelief Optimizer
 While the AdaBelief optimizer can sometimes accelerate the initial learning phase, I have concluded that its severe VRAM penalty and workflow friction make it suboptimal for my process. Reusing a model trained with AdaBelief on a new target often requires restarting the training from scratch, which negates the benefits of a well-trained base model. For these reasons, I currently favor the standard RMSprop optimizer for its stability and reusability.
