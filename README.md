@@ -59,13 +59,13 @@ My deep involvement with this workflow naturally led me to identify and solve cr
 
 ---
 
-### 4. The End-to-End Production Workflow (150+ Hours Per Project)
+### 4. The End-to-End Production Workflow (~30+ Hours Per Project)
 
 Each video is the result of a painstaking, multi-stage production pipeline that I have refined for quality and consistency.
 
 1.  **Data Acquisition (MP4 to PNG):** Source and destination video clips are carefully selected and decomposed into high-quality PNG image sequences.
 2.  **Face Extraction & Alignment:** Faces are extracted from every frame. This is the most labor-intensive stage.
-    *   **Manual XSeg Polygon Drawing:** I manually draw precise segmentation polygons around the destination face. This often requires **hours of meticulous work per video**, with complex scenes sometimes requiring over **2,000 individual face alignments**.
+    *   **Manual XSeg Polygon Drawing:** I manually draw precise segmentation polygons around the destination face. This often requires **hours of meticulous work per video**, with complex scenes sometimes requiring over **400 individual face alignments**.
 3.  **XSeg Model Training:** A dedicated XSeg segmentation model is trained on the manually labeled data to produce high-quality, context-aware masks.
 4.  **SAEHD Model Training:** The core deepfake model is trained. This is a multi-day, data-driven process where I make critical decisions based on performance metrics. *(See Section 5 for a detailed breakdown).*
 5.  **Merging & Compositing:** The trained model is used to merge my face onto the destination frames, followed by final color grading and video assembly.
