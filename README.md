@@ -173,7 +173,7 @@ My methodology is broken down into three distinct phases, with progression betwe
     2.  **Pose Refinement:** `Uniform Yaw (UY)` is enabled for several hours to improve side profiles.
     3.  **Feature Priority:** `Eyes and Mouth Priority (EMP)` is selectively enabled to fix specific blurriness, used with caution to avoid artifacts.
 
-##### Phase 3: Final Sharpening using Generative adversarial network (GAN)
+##### Phase 3: Final Sharpening using Generative Adversarial Network (GAN)
 *   **Objective:** To apply a final layer of sharpness and realism.
 *   **Execution:** `GAN` is enabled at a low power setting (`0.1`) for a very short duration (**10-15 minutes**) to avoid over-sharpening artifacts.
 
