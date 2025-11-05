@@ -227,6 +227,19 @@ Below are my most frequently used and tested model configurations, representing 
 
 ---
 
+#### Training Previews & Results
+The following images are examples of the output quality achieved through my refined training methodology.
+
+<div align="center">
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03" alt="Preview 1">
+  <br/>
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37" alt="Preview 2">
+  <br/>
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/6a97dd3d-abf4-4327-9a08-3c6412fedadb" alt="Preview 3">
+</div>
+
+---
+
 ### 7. Conclusion: From Passion Project to Engineering Proof
 
 What began as a creative hobby, a way to explore a unique form of digital art—quickly evolved into a holistic engineering challenge. The pursuit of professional-grade quality demanded more than just using a tool; it required me to build, optimize, and master an entire ecosystem at every level:
@@ -247,14 +260,3 @@ This project serves as a comprehensive portfolio of my practical engineering exp
 Ultimately, this project is a testament to my passion for building, my persistence through complex challenges, and my ability to deliver a complete, high-quality product from the ground up.
 
 ---
-
-#### Training Previews & Results
-The following images are examples of the output quality achieved through my refined training methodology.
-
-<div align="center">
-  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03" alt="Preview 1">
-  <br/>
-  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37" alt="Preview 2">
-  <br/>
-  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/6a97dd3d-abf4-4327-9a08-3c6412fedadb" alt="Preview 3">
-</div>
