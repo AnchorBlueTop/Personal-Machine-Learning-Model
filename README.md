@@ -67,15 +67,16 @@ The system was engineered for a single purpose: maximum, sustained performance a
   </table>
 </div>
 
+    
 ---
 
 ### 3. Engineering Contributions: Workflow & Performance Enhancements
 
-My deep involvement with this workflow naturally led me to identify and solve critical inefficiencies and bugs within the original DeepFaceLab software. I have moved beyond being a user to actively engineering improvements to the toolset. My contributions focus on reducing manual labor, improving user experience, and optimizing performance.
+My deep involvement with this workflow naturally led me to identify and solve critical inefficiencies and bugs within the original DeepFaceLab software. I have moved beyond being a user to actively engineering improvements to the toolset. **The modified source code for these contributions can be reviewed in the [`/src`](/src) directory.**
 
 #### Bi-Directional Masking: A Quality-of-Life Overhaul
 *   **Problem:** The default mask control was a single, uniform modifier. This made it impossible to create precise masks for complex head shapes, often resulting in background bleed or an unnatural "helmet" look.
-*   **Solution:** I implemented a complete overhaul of the mask modification system, engineering a new bi-directional control feature. This allows for independent, per-axis expansion and erosion of the mask (top, bottom, left, and right).
+*   **Solution:** I implemented a complete overhaul of the mask modification system, engineering a new bi-directional control feature. This allows for independent, per-axis expansion and erosion of the mask (top, bottom, left, and right). **View the implementation in [`src/MergeMasked.py`](/src/MergeMasked.py)**.
 *   **Impact:** This enhancement transforms a frustrating, limited tool into a powerful, precise instrument. It enables the creation of much cleaner, more realistic masks that can be tailored to fit any subject perfectly. The difference between the old and new systems is demonstrated below.
 
 <div align="center">
@@ -112,9 +113,9 @@ In addition to developing the core feature, this work included:
 - **Ergonomic Key Remapping:** I redesigned the entire control scheme for the interactive merger, creating an intuitive, clustered key layout that significantly improves workflow speed.
 
 #### XSeg Training Pipeline: Eliminating CPU Bottlenecks
-*   **Problem:** While analyzing training performance, I identified a severe bottleneck in the XSeg training pipeline. The GPU was frequently idle ("starving") while waiting for the CPU to prepare data batches, indicated by a cyclical fast-slow-slow iteration pattern.
-*   **Solution:** I refactored the data loader for the XSeg model by removing an artificial 8-core cap and implementing new logic to intelligently allocate `(Total CPU Cores - 2)` processes for data generation.
-*   **Impact:** On my 16-core CPU, this increased data generation parallelism by **3.5x** (from 4 to 14 processes), completely eliminating the GPU starvation issue and leading to smoother, faster training performance.
+*   **Problem:** I identified a severe producer-consumer bottleneck in the XSeg training pipeline where the GPU was frequently idle ("starving") while waiting for the CPU to prepare data batches.
+*   **Solution:** I refactored the data loader for the XSeg model, removing an artificial 8-core cap and implementing new logic to intelligently allocate `(Total CPU Cores - 2)` processes for data generation. **View the implementation in [`src/Model.py`](/src/Model.py)**.
+*   **Impact:** On my 16-core CPU, this increased data generation parallelism by **3.5x**, completely eliminating the GPU starvation issue and leading to smoother, faster training performance.
 
 ---
 
@@ -128,6 +129,14 @@ Each video is the result of a painstaking, multi-stage production pipeline that 
 3.  **XSeg Model Training:** A dedicated XSeg segmentation model is trained on the manually labeled data to produce high-quality, context-aware masks.
 4.  **SAEHD Model Training:** The core deepfake model is trained. This is a multi-day, data-driven process where I make critical decisions based on performance metrics. *(See Section 5 for a detailed breakdown).*
 5.  **Merging & Compositing:** The trained model is used to merge my face onto the destination frames, followed by final color grading and video assembly.
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/xseg-masking.gif" alt="Time-lapse of the manual XSeg polygon drawing process." width="810">
+  <br/>
+  <b>A 3000x time-lapse of the meticulous manual XSeg polygon drawing process.</b>
+  <br/>
+  <i>This critical step ensures a high-quality, precise mask for the final output.</i>
+</div>
 
 ---
 
@@ -216,6 +225,29 @@ Below are my most frequently used and tested model configurations, representing 
 
 *Note on the AdaBelief Optimizer: While this optimizer can sometimes accelerate the initial learning phase, its severe VRAM penalty and workflow friction make it suboptimal for my process. For these reasons, I currently favor the standard RMSprop optimizer for its stability and reusability.*
 
+---
+
+### 7. Conclusion: From Passion Project to Engineering Proof
+
+What began as a creative hobby, a way to explore a unique form of digital art—quickly evolved into a holistic engineering challenge. The pursuit of professional-grade quality demanded more than just using a tool; it required me to build, optimize, and master an entire ecosystem at every level:
+
+*   **As a Hardware Engineer,** I designed and built a specialized, thermally-stable workstation for 24/7 operation.
+*   **As a Software Engineer,** I delved into a legacy codebase to identify bottlenecks, fix bugs, and implement significant quality-of-life enhancements.
+*   **As a Machine Learning Practitioner,** I developed a data-driven, empirical methodology for model training, making critical decisions based on performance metrics to achieve the highest quality output.
+
+For me, this technology has been an art form—a way to achieve a personal dream of placing myself into the iconic Bollywood movies I grew up with. While I am acutely aware of the potential for misuse of AI, I believe this project stands as a testament to its power as a creative and expressive medium. It is a demonstration of responsible, passionate, and technically meticulous application of this technology.
+
+This project serves as a comprehensive portfolio of my practical engineering expertise. This multi-year, self-directed endeavor proves my capabilities in:
+
+*   **Systems Thinking:** Architecting a complete hardware and software solution to solve a complex problem.
+*   **Software Engineering:** Analyzing, debugging, and enhancing a production-level Python application.
+*   **ML Operations (MLOps):** Managing the entire machine learning pipeline from data preparation and model training to final production and output.
+*   **Hypothesis-Driven R&D:** Systematically testing solutions, documenting failures (like the FP16 investigation), and making strategic pivots based on empirical evidence.
+
+Ultimately, this project is a testament to my passion for building, my persistence through complex challenges, and my ability to deliver a complete, high-quality product from the ground up.
+
+---
+
 #### Training Previews & Results
 The following images are examples of the output quality achieved through my refined training methodology.
 
@@ -226,5 +258,3 @@ The following images are examples of the output quality achieved through my refi
   <br/>
   <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/6a97dd3d-abf4-4327-9a08-3c6412fedadb" alt="Preview 3">
 </div>
-
----
