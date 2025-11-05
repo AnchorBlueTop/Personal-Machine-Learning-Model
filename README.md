@@ -59,7 +59,7 @@ The system was engineered for a single purpose: maximum, sustained performance a
     <!-- Bottom Row: One Landscape Image -->
     <tr>
       <td align="center" colspan="2">
-        <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/mora.jpg" alt="The external MO-RA IV radiator." width="810">
+        <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/external-mora.jpg" alt="The external MO-RA IV radiator." width="810">
         <br/>
         <b>External Radiator for 24/7 Thermal Stability</b>
       </td>
