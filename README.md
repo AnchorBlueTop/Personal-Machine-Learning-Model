@@ -32,8 +32,40 @@ The system was engineered for a single purpose: maximum, sustained performance a
 | **CPU** | AMD Ryzen 9 9950X3D (Delidded)| AVX-512 support for accelerated CPU-bound tasks like the SOT color transfer algorithm during the final merge process. |
 | **GPU** | NVIDIA RTX 5090 (32GB) | Maximum available VRAM to enable training of higher-resolution models and larger batch sizes. |
 | **Cooling**| Custom Water Loop w/ External MO-RA IV Radiator | To decouple heat dissipation from the workstation. The external radiator, wall-mounted in an adjacent room, allows for silent, continuous, and stable operation without thermal throttling, which is critical for multi-day training runs. |
-
-*(Images of the PC build and external MO-RA setup will be included here to visually showcase the engineering effort.)*
+  
+<div align="center">
+  <table>
+    <!-- Top Row: Two Portrait Images -->
+    <tr>
+      <td align="center" width="50%">
+        <img src="https://github.com/AnchorBlueTop/ai-production-ecosystem/blob/main/assets/pc-on.jpg?raw=true" alt="The complete ML Workstation, powered on." width="400">
+        <br/>
+        <b>The Complete ML Workstation</b>
+      </td>
+      <td align="center" width="50%">
+        <img src="https://github.com/AnchorBlueTop/ai-production-ecosystem/blob/main/assets/pc-side.jpg?raw=true" alt="Custom 3D-printed pump and sensor mount." width="400">
+        <br/>
+        <b>Custom 3D-Printed Sensor Mounts</b>
+      </td>
+    </tr>
+    <!-- Middle Row: One Landscape Image -->
+    <tr>
+      <td align="center" colspan="2">
+        <img src="https://github.com/AnchorBlueTop/ai-production-ecosystem/blob/main/assets/external-tubing-from-pc.jpg?raw=true" alt="Clean external tube routing." width="810">
+        <br/>
+        <b>Clean & Organized External Tube Routing</b>
+      </td>
+    </tr>
+    <!-- Bottom Row: One Landscape Image -->
+    <tr>
+      <td align="center" colspan="2">
+        <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/mora.jpg" alt="The external MO-RA IV radiator." width="810">
+        <br/>
+        <b>External Radiator for 24/7 Thermal Stability</b>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ---
 
@@ -42,18 +74,45 @@ The system was engineered for a single purpose: maximum, sustained performance a
 My deep involvement with this workflow naturally led me to identify and solve critical inefficiencies and bugs within the original DeepFaceLab software. I have moved beyond being a user to actively engineering improvements to the toolset. My contributions focus on reducing manual labor, improving user experience, and optimizing performance.
 
 #### Bi-Directional Masking: A Quality-of-Life Overhaul
-*   **Problem:** The default mask controls were unintuitive and lacked the fine-grained control needed to handle complex head shapes and occlusions, leading to background bleed and poor mask boundaries.
-*   **Solution:** I implemented a complete overhaul of the mask modification system. This included:
-    1.  **Developing a Bi-Directional Control System:** I engineered a feature that allows for independent, per-axis expansion and erosion of the mask (top, bottom, left, right).
-    2.  **Fixing Core Logic Bugs:** I diagnosed and fixed a bug in the underlying OpenCV implementation that caused inverted and unpredictable control behavior.
-    3.  **Preserving Exclusion Zones:** I added logic to ensure that manually drawn exclusion masks (e.g., for glasses or beards) are respected and preserved during the expansion process.
-    4.  **Ergonomic Key Remapping:** I redesigned the entire control scheme for the interactive merger, creating an intuitive, clustered key layout that significantly improves workflow speed.
-*   **Impact:** This enhancement transforms a frustrating process into a powerful, precise tool, enabling the creation of much cleaner and more realistic masks.
+*   **Problem:** The default mask control was a single, uniform modifier. This made it impossible to create precise masks for complex head shapes, often resulting in background bleed or an unnatural "helmet" look.
+*   **Solution:** I implemented a complete overhaul of the mask modification system, engineering a new bi-directional control feature. This allows for independent, per-axis expansion and erosion of the mask (top, bottom, left, and right).
+*   **Impact:** This enhancement transforms a frustrating, limited tool into a powerful, precise instrument. It enables the creation of much cleaner, more realistic masks that can be tailored to fit any subject perfectly. The difference between the old and new systems is demonstrated below.
 
-    *(Here you will insert 1-2 images showcasing the results of the new bi-directional masking.)*
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" valign="top">
+        <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/fixed-directional-mask.png" alt="Old fixed mask expansion" width="400">
+        <br/>
+        <b>Before: Uniform Expansion</b>
+        <br/>
+        <i>A single value controls all four directions, offering no flexibility.</i>
+      </td>
+      <td align="center" valign="top">
+        <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/bi-directional-mask.png" alt="New flexible mask expansion" width="400">
+        <br/>
+        <b>After: Independent Per-Axis Control</b>
+        <br/>
+        <i>Separate values for top, bottom, left, and right allow for precise adjustments.</i>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" colspan="2">
+        <img src="https://raw.githubusercontent.com/AnchorBlueTop/ai-production-ecosystem/refs/heads/main/assets/bi-directional-mask-example.png" alt="Example of directional mask expansion in use" width="810">
+        <br/>
+        <b>Result: A precise mask that covers the forehead and hair without distorting the sides.</b>
+      </td>
+    </tr>
+  </table>
+</div>
+
+In addition to developing the core feature, this work included:
+- **Fixing Core Logic Bugs:** I diagnosed and fixed a bug in the underlying OpenCV implementation that caused inverted and unpredictable control behavior.
+- **Preserving Exclusion Zones:** I added logic to ensure that manually drawn exclusion masks (e.g., for glasses or beards) are respected during the expansion process.
+- **Ergonomic Key Remapping:** I redesigned the entire control scheme for the interactive merger, creating an intuitive, clustered key layout that significantly improves workflow speed.
 
 #### XSeg Training Pipeline: Eliminating CPU Bottlenecks
-*   **Problem:** While analyzing training performance, I identified a severe producer-consumer bottleneck in the XSeg training pipeline. The GPU was frequently idle ("starving") while waiting for the CPU to prepare data batches, indicated by a cyclical fast-slow-slow iteration pattern.
+*   **Problem:** While analyzing training performance, I identified a severe bottleneck in the XSeg training pipeline. The GPU was frequently idle ("starving") while waiting for the CPU to prepare data batches, indicated by a cyclical fast-slow-slow iteration pattern.
 *   **Solution:** I refactored the data loader for the XSeg model by removing an artificial 8-core cap and implementing new logic to intelligently allocate `(Total CPU Cores - 2)` processes for data generation.
 *   **Impact:** On my 16-core CPU, this increased data generation parallelism by **3.5x** (from 4 to 14 processes), completely eliminating the GPU starvation issue and leading to smoother, faster training performance.
 
@@ -77,14 +136,14 @@ Each video is the result of a painstaking, multi-stage production pipeline that 
 Training is not a "fire-and-forget" process. It is an iterative cycle of analysis and intervention, where I make informed, data-driven decisions based on performance metrics to guide the model toward an optimal result.
 
 #### How to Make Informed Decisions During Training
-
 Knowing when to proceed to the next phase comes down to looking at the face previews and interpreting model loss values. The model loss usually follows a logarithmic trend downwards during the initial generalization phase before stagnating during the refinement and final sharpening phases.
 
-![Loss Curve Graph](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/341e3a21-cd55-4cda-960c-3043a56717f4)
-
-The entire training process is a balancing act between two key metrics, which are logged continuously:
-
-![Loss Value Log](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/5899a485-cdb6-47b1-bed6-be0a89458dfb)
+<div align="center">
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/341e3a21-cd55-4cda-960c-3043a56717f4" alt="Loss Curve Graph">
+  <p>The entire training process is a balancing act between two key metrics, which are logged continuously:</p>
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/5899a485-cdb6-47b1-bed6-be0a89458dfb" alt="Loss Value Log">
+  <br/>
+</div>
 
 *   **SRC (Source) Loss:** This measures how accurately the model can reconstruct my own face. A lower value means the model is getting better at reproducing my specific facial features.
 *   **DST (Destination) Loss:** This measures how accurately the model can reconstruct the face of the actor in the target video. A lower value indicates better performance in capturing the target's expressions and head movements.
@@ -92,11 +151,10 @@ The entire training process is a balancing act between two key metrics, which ar
 Essentially, once the loss values no longer improve at a significant rate (I typically use a threshold of less than **0.010 improvement over a 25-minute interval**), and there isn't a notable difference in the visual previews, it's time to move to the next step or phase. This data-driven approach is critical to avoid overfitting and achieve a high-quality result.
 
 #### My Three-Phase Training Process
-
 My methodology is broken down into three distinct phases, with progression between them governed by the data described above.
 
 ##### Phase 1: Generalization (Random Warp Enabled)
-*   **Objective:** To teach the model the general structure, expressions, and angles of the faces. Fine detail is not the priority.
+*   **Objective:** To teach the model the general structure, expressions, and angles of the faces.
 *   **Key Settings:** `Random Warp (RW)`: **Enabled**, `Flip DST faces randomly`: **Enabled**.
 
 ##### Phase 2: Refinement & Detail Acquisition (Random Warp Disabled)
@@ -106,34 +164,29 @@ My methodology is broken down into three distinct phases, with progression betwe
     2.  **Pose Refinement:** `Uniform Yaw (UY)` is enabled for several hours to improve side profiles.
     3.  **Feature Priority:** `Eyes and Mouth Priority (EMP)` is selectively enabled to fix specific blurriness, used with caution to avoid artifacts.
 
-##### Phase 3: Final Sharpening (GAN)
+##### Phase 3: Final Sharpening using Generative adversarial network (GAN)
 *   **Objective:** To apply a final layer of sharpness and realism.
 *   **Execution:** `GAN` is enabled at a low power setting (`0.1`) for a very short duration (**10-15 minutes**) to avoid over-sharpening artifacts.
 
---- 
+---
 
 ### 6. Model Architectures & Parameters: An Empirical Analysis
 
 There is no single "best" model. The optimal architecture is a delicate balance of resolution, model complexity (dimensions), VRAM usage, and training time. Through hundreds of hours of empirical testing, I have found that the `LIAE-UDT` architecture provides a strong balance of source face likeness and adaptation to destination lighting.
 
-However, I've learned that while model parameters can be fine-tuned, the single most important factor for a high-quality result is well-matched, high-quality lighting in both the source and destination facesets.
-
 #### Understanding the Key Parameters
-
 My training methodology is based on a deep, practical understanding of how each parameter affects the final output.
 
-*   **Autoencoder Dimensions (AE Dims):** This can be thought of as the model's total "knowledge capacity"—the size of its internal library for facial features. A larger AE allows the model to store a more diverse range of information.
-
-*   **Encoder/Decoder Dimensions (E/D Dims):** If the Autoencoder is the library, the Encoder and Decoder are the "PhD-level readers and writers" that access it. The Encoder "reads" a face and summarizes it for the library, while the Decoder "writes" a new face based on that summary. Higher dimensions allow them to capture and reproduce more intricate details and nuances.
-
-*   **Batch Size:** This is critical for training stability. Through extensive testing, I have found that a batch size below 8 often leads to training instability and poor quality outputs, such as misaligned or missing eyes.
+*   **Autoencoder Dimensions (AE Dims):** This can be thought of as the model's total "knowledge capacity"—the size of its internal library for facial features.
+*   **Encoder/Decoder Dimensions (E/D Dims):** If the Autoencoder is the library, the Encoder and Decoder are the "PhD-level readers and writers." Higher dimensions allow them to capture and reproduce more intricate details.
+*   **Batch Size:** This is critical for training stability. Through extensive testing, I have found that a batch size below 8 often leads to poor quality outputs, such as misaligned eyes.
 
 #### Model Configurations & Findings
-
 Below are my most frequently used and tested model configurations, representing a history of my work and hardware progression.
 
 ##### Primary Production Models (RTX 4090)
 *This library of models was developed on the RTX 4090. The 480p model, with over 4.8 million iterations, represents my most refined and stable configuration on that platform.*
+<div align="center">
 
 | Resolution | **480x480 (Main)** | 512x512 |
 |---|---|---|
@@ -144,8 +197,11 @@ Below are my most frequently used and tested model configurations, representing 
 | **Mask Dims** | 32 | 18 |
 | **Batch Size** | 10 | 10 |
 
+</div>
+
 ##### High-Performance Models (RTX 5090)
 *These models leverage the increased VRAM of the new hardware to push for higher resolutions and model complexity.*
+<div align="center">
 
 | Parameter | High Res (Balanced) | High Res (Testing) |
 |---|---|---|
@@ -155,17 +211,20 @@ Below are my most frequently used and tested model configurations, representing 
 | **Decoder Dims** | 80 | 98 |
 | **Mask Dims**| 32 | 32 |
 | **Batch Size** | 10 | 10 |
-| **AdaBelief** | TRUE | FALSE |
 
-##### A Note on the AdaBelief Optimizer
-While the AdaBelief optimizer can sometimes accelerate the initial learning phase, I have concluded that its severe VRAM penalty and workflow friction make it suboptimal for my process. Reusing a model trained with AdaBelief on a new target often requires restarting the training from scratch, which negates the benefits of a well-trained base model. For these reasons, I currently favor the standard RMSprop optimizer for its stability and reusability.
+</div>
+
+*Note on the AdaBelief Optimizer: While this optimizer can sometimes accelerate the initial learning phase, its severe VRAM penalty and workflow friction make it suboptimal for my process. For these reasons, I currently favor the standard RMSprop optimizer for its stability and reusability.*
 
 #### Training Previews & Results
-
 The following images are examples of the output quality achieved through my refined training methodology.
 
-![Preview 1](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03)
-![Preview 2](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37)
-![Preview 3](https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/6a97dd3d-abf4-4327-9a08-3c6412fedadb)
+<div align="center">
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/2026d10e-061a-4c12-96eb-2ca999f0be03" alt="Preview 1">
+  <br/>
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/a7bb75a2-ec37-4460-8633-c591cd110d37" alt="Preview 2">
+  <br/>
+  <img src="https://github.com/AnchorBlueTop/Personal-Machine-Learning-Model/assets/98157644/6a97dd3d-abf4-4327-9a08-3c6412fedadb" alt="Preview 3">
+</div>
 
 ---
